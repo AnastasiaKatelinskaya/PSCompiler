@@ -1,0 +1,28 @@
+float abs(float x)
+{
+	if (x < 0)
+	{
+		return -x;
+	}
+	return x;
+}
+
+float GetSquareRootNewtonMethod(float x)
+{
+	float guess = x / 2;
+	float next = (guess + x / guess) / 2;
+	while (abs(next - guess) >= 0.01)
+	{
+		guess = next;
+		next = (guess + x / guess) / 2;
+	}
+	return next;
+}
+
+void main(int argc, array<string> argv)
+{
+	float value = 21.0;
+	print("Enter float value: ");
+	read("%lf", value);
+	print("sqrt(%f) = %f", value, GetSquareRootNewtonMethod(value));
+}

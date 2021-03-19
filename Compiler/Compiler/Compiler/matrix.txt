@@ -1,0 +1,72 @@
+void multiply_matrices(
+	array<array<int>> matrix1,
+	int rows1,
+	int cols1,
+	array<array<int>> matrix2,
+	int rows2,
+	int cols2,
+	array<array<int>> result)
+{
+	if (cols1 != rows2)
+	{
+		print("Columns of first matrix should be equal to rows of second matrix");
+		return;
+	}
+
+	int row = 0;
+	while (row < rows1)
+	{
+		int col = 0;
+		while (col < cols2)
+		{
+			int inner = 0;
+			while (inner < cols1)
+			{
+				result[row][col] = result[row][col] + (matrix1[row][inner] * matrix2[inner][col]);
+				inner = inner + 1;
+			}
+			col = col + 1;
+		}
+		row = row + 1;
+	}
+}
+
+void print_matrix(array<array<int>> matrix, int rows, int cols)
+{
+	int row = 0;
+	while (row < rows)
+	{
+		int col = 0;
+		while (col < cols)
+		{
+			print("%d ", matrix[row][col]);
+			col = col + 1;
+		}
+		print("\n");
+		row = row + 1;
+	}
+}
+
+int main()
+{
+	array<array<int>> matrix1 = [
+		[1, 2],
+		[4, 5],
+		[7, 8]
+	];
+
+	array<array<int>> matrix2 = [
+		[1, 0, 0],
+		[0, 1, 0]
+	];
+
+	array<array<int>> matrix3 = [
+		[0, 0, 0],
+		[0, 0, 0],
+		[0, 0, 0]
+	];
+
+	multiply_matrices(matrix1, 3, 2, matrix2, 2, 3, matrix3);
+	print_matrix(matrix3, 3, 3);
+	return 0;
+}
